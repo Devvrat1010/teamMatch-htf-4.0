@@ -53,16 +53,6 @@ router.post("/login", async (req, res) => {
     res.status(400).json({ error: "Invalid credentials" });
     return;
   }
-  // try{
-  //     const user=await User.login(email,password)
-  //     const token = createToken(user._id)
-  //     res.cookie('jwt',token,{httpsOnly:true,maxAge:maxAge*1000})
-  //     .status(200)
-  //     .json({message:user._id,token:token})
-  // }
-  // catch(err){
-  //     res.status(400).json({error:err.message})
-  // }
 });
 
 
@@ -126,7 +116,7 @@ router.post("/signup", async (req, res) => {
         return
     }
     catch (err) {
-        // res.status(400).json({ error: err.message})
+        res.status(400).json({ error: err.message})
         return
     }
 })

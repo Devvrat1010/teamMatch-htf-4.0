@@ -35,7 +35,7 @@ export default function Login() {
 
       const data = await response.json();
 
-      if (data.token) {
+      if (data.token){
         document.cookie = `LOGIN_INFO=${data.token}`;
         const jwt = document.cookie
           .split("; ")

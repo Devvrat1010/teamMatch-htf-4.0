@@ -19,40 +19,11 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.json());
 
-// const allUsers = require("./route/userOperation/getUsers");
-// const addFriend = require("./route/userOperation/addFriend");
-// const addSkills = require("./route/userOperation/addSkills");
-// const updateUser = require("./route/userOperation/updateUser");
-// const removeFriend = require("./route/userOperation/removeFriend");
-// const getUserById = require("./route/userOperation/getUserById");
-// const getLoggedInUser = require("./route/userOperation/getLoggedInUser");
-
-// const createHackathon = require("./route/hackathons/createHackathon");
-// const getAllHackathons = require("./route/hackathons/getAllHackathons");
-
-// const getRoomCode = require("./route/chatOperations/getRoomCode");
-// const saveChats = require("./route/chatOperations/saveChats");
-// const getChats = require("./route/chatOperations/getChats");
-// const updateHackathon = require("./route/hackathons/updateHackathon");
 
 const auth = require("./route/auth");
 const userCRUD = require("./route/userCRUD");
 const hackathonsCRUD = require("./route/hackathonsCRUD");
 const chatCRUD = require("./route/chatCRUD");
-
-// app.use("/allUsers", allUsers);
-// app.use("/addFriend", addFriend);
-// app.use("/addSkills", addSkills);
-// app.use("/updateUser", updateUser);
-// app.use("/removeFriend", removeFriend);
-// app.use("/getUserById", getUserById);
-// app.use("/getLoggedInUser", getLoggedInUser);
-// app.use("/createHackathon", createHackathon);
-// app.use("/getAllHackathons", getAllHackathons);
-// app.use("/getRoomCode", getRoomCode);
-// app.use("/saveChats", saveChats);
-// app.use("/getChats", getChats);
-// app.use("/updateHackathon", updateHackathon);
 
 app.use("/auth", auth);
 app.use("/userCRUD", userCRUD);
