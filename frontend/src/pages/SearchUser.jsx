@@ -65,7 +65,6 @@ export default function Dashboard() {
     const addHackathonInterested = (e) => {
 
         const currElement = e.target.parentElement.parentElement.children[0].innerText
-        // console.log(currElement, "curele")
 
         fetch('https://teammatch-backend.onrender.com/hackathonsCRUD/updateHackathon', {
             method: 'POST',
@@ -89,11 +88,10 @@ export default function Dashboard() {
     const [searchedUser, setSearchedUser] = useState("");
 
     const searching = (e) => {
-        if (e.target.value === "") {    
+        if (e.target.value === "") {
             setFilteredUsers(allUsers);
         }
         setSearchedUser(e.target.value);
-        // const temp = allUsers.filter((user) => user.username.toLowerCase().includes(e.target.value.toLowerCase()));
         const temp = allUsers.filter((user) => user.skills.map((skill) => skill.toLowerCase()).includes(e.target.value.toLowerCase()));
         setFilteredUsers(temp);
         console.log(temp, "temp");
@@ -102,10 +100,10 @@ export default function Dashboard() {
 
 
     return (
-        <div className="bg-green-100 min-h-screen">
+        <div className="bg-green-100 h-screen overflow-y-scroll">
             <Navbar />
-            <div className="flex gap-7">
-                <div className="bg-white mt-10 ml-7 rounded-3xl w-1/3">
+            <div className="flex gap-7 h-full pb-10">
+                <div className="bg-white mt-10 ml-7 rounded-3xl w-1/3 h-full">
                     <div className="p-5">
                         <h1 className="text-2xl font-bold tracking-wide mb-8">
                             Hey There! Browse Your Hackathons{" "}
@@ -127,24 +125,26 @@ export default function Dashboard() {
                         ))}
                     </div>
                 </div>
-                <div className="mt-10 rounded-xl w-full pr-10">
-                    <div className="flex border-black rounded-2xl overflow-hidden">
+                <div className="mt-10 rounded-xl w-full pr-10 h-5/6">
+                    <div className="flex border-black rounded-2xl mb-10">
                         <input
                             className="p-3 flex-grow border-0 outline-none	"
                             type="text"
                             placeholder="Search for your mate"
                             onChange={searching}
-                        />
+                            />
                         <div className="bg-white p-3 	">
                             <FiSearch size={24} />
                         </div>
                     </div>
-                    <div className="grid grid-cols-3 gap-10 pt-10 ">
-                        {filteredUsers.map((user, i) => (
-                            user.username !== currUser.username &&
-                            <ProfileCard user={user} currUser={currUser} key={i} />
-                        ))}
-                    </div>
+                    {/* <div className="p-10"> */}
+                        <div className="h-full grid grid-cols-3 gap-10 overflow-y-scroll ">
+                            {filteredUsers.map((user, i) => (
+                                user.username !== currUser.username &&
+                                <ProfileCard user={user} currUser={currUser} key={i} />
+                            ))}
+                        </div>
+                    {/* </div> */}
                 </div>
             </div>
         </div>
