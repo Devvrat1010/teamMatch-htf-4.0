@@ -19,11 +19,10 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.json());
 
-
-const auth = require("./route/auth");
-const userCRUD = require("./route/userCRUD");
-const hackathonsCRUD = require("./route/hackathonsCRUD");
-const chatCRUD = require("./route/chatCRUD");
+const auth = require("./routes/auth");
+const userCRUD = require("./routes/userCRUD");
+const hackathonsCRUD = require("./routes/hackathonsCRUD");
+const chatCRUD = require("./routes/chatCRUD");
 
 app.use("/auth", auth);
 app.use("/userCRUD", userCRUD);

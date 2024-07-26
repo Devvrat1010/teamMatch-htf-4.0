@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ChatRoom from "./pages/chatroom";
 import Landing from "./pages/Landing";
@@ -18,6 +17,7 @@ function App() {
                     <Route path="/profile" element={<ProfilePage />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/login" element={<Login />}/>
+
                 </Routes>
             </Router>
         </div>
