@@ -11,8 +11,8 @@ export default function Signup() {
   const navigate = useNavigate();
 
   async function signup() {
-    // const response = await fetch("https://teammatch-backend.onrender.com/auth/signup", {
-    const response = await fetch("http://localhost:5000/auth/signup", {
+    const response = await fetch("https://teammatch-backend.onrender.com/auth/signup", {
+    // const response = await fetch("http://localhost:5000/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

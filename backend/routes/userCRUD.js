@@ -86,6 +86,7 @@ router.get("/getUserById/:username", async (req, res) => {
 
 router.get("/getUsers", async (req, res) => {
     try{
+        console.log("get userssssss")
         const users = await AllUsers.find()
         console.log(users)
         res.status(200).json(users)
@@ -154,6 +155,37 @@ router.post("/updateUser", async (req, res) => {
         }
 
 
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ error: "server side error" });
+    }
+});
+
+router.patch("/deleteDuplicate", async (req, res) => {
+    try {
+        const users = await AllUsers.find();
+            // const db = require("../models/db"); // Import the appropriate module that provides the `db` object
+            
+        const check = await AllUsers.aggregate(
+                [
+                    {
+                        $group: {
+                            _id: "$username",
+                            dups: { $push: "$_id" },
+                            count: { $sum: 1 },
+                        },
+                    },
+                    { $match: { count: { $gt: 1 } } },
+                ],
+                { allowDiskUse: true }
+            )
+        console.log(check, "check")
+        check.forEach(function (doc) {
+            doc.dups.shift();
+            AllUsers.deleteMany({ _id: { $in: doc.dups } });
+        });
+        
+        res.status(200).json({ message: "Duplicates removed" });
     } catch (error) {
         console.log(error);
         res.status(400).json({ error: "server side error" });

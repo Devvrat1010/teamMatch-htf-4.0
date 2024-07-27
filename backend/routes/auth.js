@@ -4,12 +4,15 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("../models/users");
 const saltRounds = 10;
+const cors = require("cors");
+router.use(cors());
+
 
 const maxAge = 3 * 24 * 60 * 60;
 
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: maxAge,
+    expiresIn: 3 * 24 * 60 * 60,
   });
 };
 
