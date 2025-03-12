@@ -4,43 +4,44 @@ import { FiUserPlus } from "react-icons/fi";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { CiTwitter } from "react-icons/ci";
 import { FiMessageCircle } from "react-icons/fi";
+import { backendLink } from "../utils";
 
 // ... (import statements remain the same)
 
-const ProfileCard = ({ user,currUser }) => {
+const ProfileCard = ({ user, currUser }) => {
 
-    const [currSelectedUser,setCurrSelectedUser] = useState("")
-    console.log(user,"userThisss")
-    console.log(currUser,"currUserThisss")
+    const [currSelectedUser, setCurrSelectedUser] = useState("")
+    console.log(user, "userThisss")
+    console.log(currUser, "currUserThisss")
 
-    const addFriend = (e) => {   
+    const addFriend = (e) => {
         const currElement = e.target.parentElement.parentElement.parentElement.children[0].innerText
-        console.log(currElement,"curele")
-        console.log(currUser.username,"currUser")
+        console.log(currElement, "curele")
+        console.log(currUser.username, "currUser")
 
-        fetch('https://teammatch-backend.onrender.com/userCRUD/addFriend', {
+        fetch(backendLink + '/userCRUD/addFriend', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 username: currUser.username,
-                friend:currElement
+                friend: currElement
             })
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            alert("friend added")
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                alert("friend added")
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     }
 
 
     return (
-        <div className="bg-white rounded-lg p-4 shadow-lg">
+        <div className="bg-white rounded-lg p-4 shadow-lg flex flex-col justify-between h-fit">
             <div className="hidden">
                 {user.username}
             </div>

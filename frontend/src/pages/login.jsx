@@ -5,6 +5,7 @@ import { RotatingLines } from "react-loader-spinner";
 
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { backendLink } from "../utils";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -23,7 +24,7 @@ export default function Login() {
     setLoader(true);
     try {
       const response = await fetch(
-        "https://teammatch-backend.onrender.com/auth/login",
+        backendLink + "/auth/login",
         // "http://3.110.101.135:5000/auth/login",
         {
           method: "POST",

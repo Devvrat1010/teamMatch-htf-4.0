@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { backendLink } from "../utils";
 
 const AddSkills = (props) => {
 
@@ -13,7 +14,7 @@ const AddSkills = (props) => {
             event.preventDefault();
             if (skill && !skills.includes(skill)) {
                 setSkills([...skills, skill]);
-                fetch("https://teammatch-backend.onrender.com/userCRUD/addSkills", {
+                fetch(backendLink + "/userCRUD/addSkills", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

@@ -44,7 +44,7 @@ Watch our video demo [here](https://www.youtube.com/watch?v=cs-oho889d8&t=46s).
 ## Backend Deployed Links
 
 - WebSocket Server: [https://web-socket-server-02l2.onrender.com/](https://web-socket-server-02l2.onrender.com/)
-- TeamMatch Backend: [https://teammatch-backend.onrender.com/](https://teammatch-backend.onrender.com/)
+- TeamMatch Backend: [backendLink/](backendLink/)
 
 ## Contributing
 

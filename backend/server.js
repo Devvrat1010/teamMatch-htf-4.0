@@ -29,13 +29,44 @@ app.use("/userCRUD", userCRUD);
 app.use("/hackathonsCRUD", hackathonsCRUD);
 app.use("/chatCRUD", chatCRUD);
 
-const start = async () => {
-  try {
-    await mongoose.connect(dbURI);
-    app.listen(5000, () => {
-      console.log(`Listening on port ${PORT}`);
+// Websocket start
+const io = new Server(server, {
+    cors: {
+        origin: "*",
+    },
+});
+
+app.get("/", (req, res) => {
+    res.send("WebSocket Server For Chatter");
+});
+
+io.on("connection", (socket) => {
+    console.log("a user connected:", socket.id);
+    
+  socket.on("joinRoom", (data) => {
+      socket.join(data.roomCode);
+      console.log("joined room", data.roomCode);
     });
-  } catch (err) {
+    
+    socket.on("sendMessage", (data) => {
+        socket.to(data.roomCode).emit("recieveMessage", data);
+    });
+});
+
+server.listen(3000, () => {
+    console.log("Socket Server Listening PORT 3000");
+});
+// Websocket end
+
+
+
+const start = async () => {
+    try {
+        await mongoose.connect(dbURI);
+        app.listen(5000, () => {
+            console.log(`Listening on port ${PORT}`);
+        });
+    } catch (err) {
     console.log(err);
     res.status(500).json({ error: "server side error" });
   }

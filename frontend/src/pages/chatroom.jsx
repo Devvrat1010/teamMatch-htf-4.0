@@ -2,8 +2,9 @@ import io from "socket.io-client";
 import { useEffect, useState, useRef } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-
-const socket = io("https://web-socket-server-02l2.onrender.com/");
+import { backendLink } from "../utils";
+// const socket = io("http://localhost:3000");
+const socket = io("https://teammatch-backend.onrender.com/");
 
 function App() {
     const [message, setMessage] = useState("");
@@ -18,7 +19,7 @@ function App() {
     const scrollTop = useRef();
 
     const saveChats = (user1, user2) => {
-        fetch("https://teammatch-backend.onrender.com/chatCRUD/saveChats", {
+        fetch(backendLink + "/chatCRUD/saveChats", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -51,7 +52,7 @@ function App() {
         container.appendChild(send);
         msg.current.appendChild(container);
         console.log("Message sent");
-        
+
         scrollTop.current.scrollIntoView({ behavior: "smooth" });
 
     };
@@ -62,7 +63,7 @@ function App() {
     };
 
     const getUser = (jwt) => {
-        fetch("https://teammatch-backend.onrender.com/auth/getLoggedInUser", {
+        fetch(backendLink + "/auth/getLoggedInUser", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -86,7 +87,7 @@ function App() {
 
     const getChats = (roomCode) => {
         console.log(roomCode, "inside getChats roomcod");
-        fetch("https://teammatch-backend.onrender.com/chatCRUD/getChats/" + roomCode, {
+        fetch(backendLink + "/chatCRUD/getChats/" + roomCode, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -102,7 +103,7 @@ function App() {
             .catch((err) => {
                 console.log(err);
             });
-        
+
         setTimeout(() => {
             scrollTop.current.scrollIntoView({ behavior: "smooth" });
         }, 200);
@@ -142,7 +143,7 @@ function App() {
             currUser.username < e.target.innerHTML
                 ? currUser.username + e.target.innerHTML
                 : e.target.innerHTML + currUser.username;
-        console.log(roomString, "roomtString");
+        console.log(roomString, "roomString");
 
         setRoomCode(roomString);
         joinRoom(roomString);
@@ -169,7 +170,7 @@ function App() {
                 {/* <Navbar></Navbar> */}
                 {friends.length === 0 ? (
                     <div className="w-full h-full flex justify-center items-center ">
-                        <Link to="/searchUser">
+                        <Link to="/peoples">
                             <div className="flex items-center gap-6 hover:bg-gray-300 cursor-pointer bg-white p-2 px-4 rounded-full text-2xl font-semibold">
                                 Find Friends
                                 <FaArrowRightLong></FaArrowRightLong>

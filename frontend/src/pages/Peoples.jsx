@@ -6,8 +6,9 @@ import { CiBookmarkCheck } from "react-icons/ci";
 import { FiSearch } from "react-icons/fi";
 import ProfileCard from "../components/ProfileCard";
 import { Link } from "react-router-dom";
+import { backendLink } from "../utils";
 
-export default function Dashboard() {
+export default function Peoples() {
 
     const [hackathons, setHackathons] = useState([]);
     const [currUser, setCurrUser] = useState({});
@@ -16,7 +17,7 @@ export default function Dashboard() {
     const [filteredUsers, setFilteredUsers] = useState([]);
 
     useEffect(() => {
-        fetch("https://teammatch-backend.onrender.com/auth/getLoggedInUser", {
+        fetch(backendLink + "/auth/getLoggedInUser", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -28,20 +29,19 @@ export default function Dashboard() {
             })
             .then((data) => {
                 setCurrUser(data.user);
-                // console.log(data, "DATA");
             })
             .catch((err) => {
                 console.log(err);
             });
 
-        fetch("https://teammatch-backend.onrender.com/hackathonsCRUD/getAllHackathons")
+        fetch(backendLink + "/hackathonsCRUD/getAllHackathons")
             .then((response) => response.json())
             .then((data) => {
                 setHackathons(data);
                 // console.log(data, "hackathons");
             });
 
-        fetch("https://teammatch-backend.onrender.com/userCRUD/getUsers", {
+        fetch(backendLink + "/userCRUD/getUsers", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export default function Dashboard() {
 
         const currElement = e.target.parentElement.parentElement.children[0].innerText
 
-        fetch('https://teammatch-backend.onrender.com/hackathonsCRUD/updateHackathon', {
+        fetch(backendLink + '/hackathonsCRUD/updateHackathon', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -90,7 +90,9 @@ export default function Dashboard() {
     const searching = (e) => {
         if (e.target.value === "") {
             setFilteredUsers(allUsers);
+            return;
         }
+        console.log(allUsers, "allUsers");
         setSearchedUser(e.target.value);
         const temp = allUsers.filter((user) => user.skills.map((skill) => skill.toLowerCase()).includes(e.target.value.toLowerCase()));
         setFilteredUsers(temp);
@@ -132,19 +134,17 @@ export default function Dashboard() {
                             type="text"
                             placeholder="Search for your mate"
                             onChange={searching}
-                            />
+                        />
                         <div className="bg-white p-3 	">
                             <FiSearch size={24} />
                         </div>
                     </div>
-                    {/* <div className="p-10"> */}
-                        <div className="h-full grid grid-cols-3 gap-10 overflow-y-scroll ">
-                            {filteredUsers.map((user, i) => (
-                                user.username !== currUser.username &&
-                                <ProfileCard user={user} currUser={currUser} key={i} />
-                            ))}
-                        </div>
-                    {/* </div> */}
+                    <div className="h-full grid grid-cols-3 gap-10 overflow-y-scroll ">
+                        {filteredUsers.map((user, i) => (
+                            user.username !== currUser.username &&
+                            <ProfileCard user={user} currUser={currUser} key={i} />
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

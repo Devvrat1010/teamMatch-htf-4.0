@@ -4,6 +4,7 @@ import ProfilePic from "../assets/pfp.png";
 import TeamDetails from "../components/TeamDetails";
 import AddSkills from "../components/AddSkills";
 import { useNavigate } from "react-router-dom";
+import { backendLink } from "../utils";
 
 export default function ProfilePage() {
   const [showForm, setShowForm] = useState(false);
@@ -36,7 +37,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     // Fetch the user's details
-    fetch("https://teammatch-backend.onrender.com/auth/getLoggedInUser", {
+    fetch(backendLink + "/auth/getLoggedInUser", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -62,7 +63,7 @@ export default function ProfilePage() {
 
   const saveDetails = () => {
     console.log(updatedDetails, "updatedDetails");
-    fetch("https://teammatch-backend.onrender.com/userCRUD/updateUser", {
+    fetch(backendLink + "/userCRUD/updateUser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -113,7 +114,7 @@ export default function ProfilePage() {
 
 //   return (
     const createHackathon = () => {
-        fetch("https://teammatch-backend.onrender.com/hackathonsCRUD/createHackathon", {
+        fetch(backendLink + "/hackathonsCRUD/createHackathon", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
