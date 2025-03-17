@@ -63,7 +63,7 @@ const Navbar = () => {
     }, []);
 
     return (
-        <div className="bg-green-100 font-bricolage">
+        <div className="bg-green-100 font-bricolage fixed w-full">
             <div className="flex justify-between p-3 ">
                 <div style={logoStyle}>
                     <style>{keyframes}</style>
