@@ -1,9 +1,9 @@
-const mongoose=require('mongoose');
+const mongoose = require('mongoose');
 
-const userSchema=new mongoose.Schema({
-    name:String,
-    link:String,
-    interestedPeoples:[String]
+const hackathonSchema = new mongoose.Schema({
+    name: String,
+    link: String,
+    interestedPeoples: [String]
 })
 
-module.exports=mongoose.model('Hackathons',userSchema)  
+module.exports = mongoose.model('Hackathons', hackathonSchema)  

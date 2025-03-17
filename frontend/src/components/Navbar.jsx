@@ -30,7 +30,13 @@ const Navbar = () => {
                 .split("; ")
                 .find((row) => row.startsWith("LOGIN_INFO"))
                 .split("=")[1];
-
+        } catch (err) {
+            const path = window.location.pathname;
+            if (path !== "/login" && path !== "/signup" && path !== "/") {
+                window.location.href = "/login";
+            }
+        }
+        try {
             fetch(backendLink + "/auth/getLoggedInUser", {
                 method: "GET",
                 headers: {
@@ -52,12 +58,12 @@ const Navbar = () => {
                     console.log(err);
                 });
         } catch (err) {
-            console.log(err);
+            console.log("err", err);
         }
     }, []);
 
     return (
-        <div className="bg-white font-bricolage">
+        <div className="bg-green-100 font-bricolage">
             <div className="flex justify-between p-3 ">
                 <div style={logoStyle}>
                     <style>{keyframes}</style>
@@ -83,7 +89,7 @@ const Navbar = () => {
                 </div>
                 <div className="flex">
                     {currUser.username && (
-                        <Link to="/profile" className="ml-10 text-lg hover:text-gray-400">
+                        <Link to="/profilePage" className="ml-10 text-lg hover:text-gray-400">
                             {currUser.username}
                         </Link>
                     )}

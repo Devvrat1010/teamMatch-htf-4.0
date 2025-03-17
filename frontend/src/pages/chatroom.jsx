@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 import { backendLink } from "../utils";
 // const socket = io("http://localhost:3000");
 const socket = io("https://teammatch-backend.onrender.com/");
+import Navbar from "../components/Navbar";
 
-function App() {
+function ChatRoom() {
     const [message, setMessage] = useState("");
     const [messageRecieved, setMessageRecieved] = useState("");
     const [roomCode, setRoomCode] = useState("");
@@ -166,6 +167,7 @@ function App() {
 
     return (
         <div>
+            <Navbar />
             <div className="p-2 bg-black h-screen flex gap-2">
                 {/* <Navbar></Navbar> */}
                 {friends.length === 0 ? (
@@ -262,4 +264,4 @@ function App() {
     );
 }
 
-export default App;
+export default ChatRoom;

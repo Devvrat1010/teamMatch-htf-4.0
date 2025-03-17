@@ -102,10 +102,57 @@ export default function Peoples() {
 
 
     return (
-        <div className="bg-green-100 h-screen overflow-y-scroll">
+        // <div className="bg-green-100 h-screen overflow-y-scroll">
+        //     <Navbar />
+        //     <div className="flex gap-7 flex-grow pb-10">
+        //         <div className="bg-white mt-10 ml-7 rounded-3xl w-1/3 overflow-y-scroll flex-grow">
+        //             <div className="p-5">
+        //                 <h1 className="text-2xl font-bold tracking-wide mb-8">
+        //                     Hey There! Browse Your Hackathons{" "}
+        //                 </h1>
+        //                 {hackathons.map((hackathon, i) => (
+        //                     <div
+        //                         key={i}
+        //                         className="border-2 border-green-800 rounded-xl p-2 w-full mb-2"
+        //                     >
+        //                         <div className="flex justify-between items-center">
+        //                             <Link to={hackathon.link} target="blank">
+        //                                 <h3 className="hover:text-green-900">{hackathon.name} </h3>
+        //                             </Link>
+        //                             <button onClick={addHackathonInterested}>
+        //                                 <CiBookmarkPlus size={20} />
+        //                             </button>
+        //                         </div>
+        //                     </div>
+        //                 ))}
+        //             </div>
+        //         </div>
+        //         <div className="mt-10 rounded-xl w-full pr-10 overflow-y-scroll flex-grow">
+        //             <div className="flex border-black rounded-2xl mb-10">
+        //                 <input
+        //                     className="p-3 flex-grow border-0 outline-none	"
+        //                     type="text"
+        //                     placeholder="Search for your mate"
+        //                     onChange={searching}
+        //                 />
+        //                 <div className="bg-white p-3 	">
+        //                     <FiSearch size={24} />
+        //                 </div>
+        //             </div>
+        //             <div className="h-full grid grid-cols-3 gap-10 overflow-y-scroll ">
+        //                 {filteredUsers.map((user, i) => (
+        //                     user.username !== currUser.username &&
+        //                     <ProfileCard user={user} currUser={currUser} key={i} />
+        //                 ))}
+        //             </div>
+        //         </div>
+        //     </div>
+        // </div>
+        <div className="bg-green-100 h-screen flex flex-col">
             <Navbar />
-            <div className="flex gap-7 h-full pb-10">
-                <div className="bg-white mt-10 ml-7 rounded-3xl w-1/3 h-full">
+            <div className="flex gap-7 flex-grow pb-10 overflow-hidden">
+                {/* Left Sidebar - Takes only necessary space */}
+                <div className="bg-white mt-10 ml-7 rounded-3xl w-1/4 overflow-y-scroll flex-shrink-0">
                     <div className="p-5">
                         <h1 className="text-2xl font-bold tracking-wide mb-8">
                             Hey There! Browse Your Hackathons{" "}
@@ -127,27 +174,36 @@ export default function Peoples() {
                         ))}
                     </div>
                 </div>
-                <div className="mt-10 rounded-xl w-full pr-10 h-5/6">
-                    <div className="flex border-black rounded-2xl mb-10">
+
+                {/* Main Content - Expands to Fill Remaining Height */}
+                <div className="mt-10 rounded-xl w-full pr-10 flex flex-col flex-grow overflow-hidden">
+                    {/* Search Bar */}
+                    <div className="flex border-black rounded-2xl mb-4">
                         <input
-                            className="p-3 flex-grow border-0 outline-none	"
+                            className="p-3 flex-grow border-0 outline-none"
                             type="text"
                             placeholder="Search for your mate"
                             onChange={searching}
                         />
-                        <div className="bg-white p-3 	">
+                        <div className="bg-white p-3">
                             <FiSearch size={24} />
                         </div>
                     </div>
-                    <div className="h-full grid grid-cols-3 gap-10 overflow-y-scroll ">
-                        {filteredUsers.map((user, i) => (
-                            user.username !== currUser.username &&
-                            <ProfileCard user={user} currUser={currUser} key={i} />
-                        ))}
+
+                    {/* Profiles Grid - Expands Fully */}
+                    <div className="flex-grow grid grid-cols-3 gap-10 overflow-y-auto">
+                        {filteredUsers.map(
+                            (user, i) =>
+                                user.username !== currUser.username && (
+                                    <ProfileCard user={user} currUser={currUser} key={i} />
+                                )
+                        )}
                     </div>
                 </div>
             </div>
         </div>
+
+
     );
 };
 

@@ -11,10 +11,10 @@ function App() {
         <div>
             <Router>
                 <Routes>
-                    <Route path="/chats" element={<ChatRoom />} />
                     <Route path="/" element={<Landing />} />
+                    <Route path="/chats" element={<ChatRoom />} />
                     <Route path="/peoples" element={<Peoples />} />
-                    <Route path="/profile" element={<ProfilePage />} />
+                    <Route path="/profilePage" element={<ProfilePage />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/login" element={<Login />} />
 
