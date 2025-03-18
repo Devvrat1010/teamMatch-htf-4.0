@@ -48,7 +48,7 @@ const binarySearch = (arr, target) => {
     let left = 0, right = arr.length - 1;
     while (left <= right) {
         const mid = Math.floor((left + right) / 2);
-        if (arr[mid] === target) return true;
+        if (arr[mid].toLowerCase() === target) return true;
         if (arr[mid] < target) left = mid + 1;
         else right = mid - 1;
     }
@@ -75,7 +75,7 @@ router.put("/updateSkills/addSkill", async (req, res) => {
         for (const category in softwareEngineeringSkills) {
             if (binarySearch(softwareEngineeringSkills[category], skill)) {
                 if (!user.skills[category]) user.skills[category] = [];
-                if (!binarySearch(user.skills[category], skill)) {
+                if (!binarySearch(user.skills[category], skill.toLowerCase())) {
                     user.skills[category].push(skill);
                     skillAdded = true; // Mark that a skill was added
                 }
@@ -273,5 +273,47 @@ router.patch("/deleteDuplicate", async (req, res) => {
         res.status(400).json({ error: "server side error" });
     }
 });
+router.get("/migrateSkillsList", async (req, res) => {
+    try {
+        const users = await AllUsers.find();
+
+        for (const user of users) {
+            const skillsList = user.skills; // Get existing skills
+            console.log(skillsList, "skills");
+
+            user.skills = {}; // Reset skills as an object
+
+            for (const skill of skillsList) {
+                try {
+                    let skillAdded = false; // Track if skill was added
+
+                    for (const category in softwareEngineeringSkills) {
+                        if (binarySearch(softwareEngineeringSkills[category], skill)) {
+                            if (!user.skills[category]) user.skills[category] = [];
+                            if (!binarySearch(user.skills[category], skill.toLowerCase())) {
+                                user.skills[category].push(skill);
+                                skillAdded = true; // Mark that a skill was added
+                            }
+                        }
+                    }
+
+                    // No need to return an error response inside the loop
+                } catch (error) {
+                    console.error("Error processing skill:", skill, error);
+                }
+            }
+
+            user.markModified("skills"); // Ensure skills update is saved
+            await user.save(); // Wait for the save operation
+        }
+
+        res.status(200).json({ message: "Skills migrated successfully" });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "Server side error" });
+    }
+});
+
 
 module.exports = router;
