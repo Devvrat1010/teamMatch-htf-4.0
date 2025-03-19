@@ -48,7 +48,7 @@ const binarySearch = (arr, target) => {
     let left = 0, right = arr.length - 1;
     while (left <= right) {
         const mid = Math.floor((left + right) / 2);
-        if (arr[mid].toLowerCase() === target) return true;
+        if (arr[mid] === target) return true;
         if (arr[mid] < target) left = mid + 1;
         else right = mid - 1;
     }
@@ -73,9 +73,11 @@ router.put("/updateSkills/addSkill", async (req, res) => {
         let skillAdded = false; // Track if skill was actually added
 
         for (const category in softwareEngineeringSkills) {
+            // console.log("category", category)
+            // console.log("softwareEngineeringSkills[category]", softwareEngineeringSkills[category])
             if (binarySearch(softwareEngineeringSkills[category], skill)) {
                 if (!user.skills[category]) user.skills[category] = [];
-                if (!binarySearch(user.skills[category], skill.toLowerCase())) {
+                if (!binarySearch(user.skills[category], skill)) {
                     user.skills[category].push(skill);
                     skillAdded = true; // Mark that a skill was added
                 }

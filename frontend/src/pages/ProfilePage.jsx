@@ -96,12 +96,12 @@ export default function ProfilePage() {
     }
 
     return (
-        <div className="h-screen flex flex-col">
+        <div className="h-screen flex flex-col bg-screenBG text-[#fdb461]">
             <Navbar />
             <div className="flex gap-7 max-h-screen p-5 pt-20">
                 <div className="rounded-xl w-1/4 flex flex-col flex-grow gap-2 items-center">
-                    <div className="flex flex-col items-center gap-2 bg-green-200 w-full rounded-xl p-4 h-fit">
-                        <div className="object-contain h-44 w-44 rounded-full overflow-hidden">
+                    <div className="flex flex-col items-center gap-2 bg-[#403950] w-full rounded-xl text-[#fdb461] p-4 h-fit">
+                        <div className="object-contain h-44 w-44 rounded-full overflow-hidden ">
                             {
                                 currUser.image ? <img
                                     src={currUser.image}
@@ -116,12 +116,12 @@ export default function ProfilePage() {
                                     />
                             }
                         </div>
-                        <h1 className="text-3xl font-bold tracking-wide text-center">{currUser.fullName}</h1>
-                        <p className="text-lg whitespace-pre-line text-center">{currUser.email}</p>
+                        <h1 className="text-3xl font-medium tracking-wide text-center font-serif">{currUser.fullName}</h1>
+                        {/* <p className="text-lg whitespace-pre-line text-center">{currUser.email}</p> */}
                     </div>
 
-                    <div className="w-full flex gap-2">
-                        <button className="bg-green-200 hover:bg-green-500 text-black font-bold py-2 px-4 rounded-xl w-1/2" onClick={() => {
+                    <div className="w-full flex gap-2 text-[#ffc88a]">
+                        <button className="bg-[#665672] hover:bg-[#917595] text- font-bold py-2 px-4 rounded-xl w-1/2" onClick={() => {
                             setEdit(!edit);
                         }}>
                             {
@@ -129,14 +129,14 @@ export default function ProfilePage() {
                             }
                         </button>
 
-                        <button className="bg-green-200 hover:bg-green-500 text-black font-bold py-2 px-4 rounded-xl w-1/2" onClick={logout}>
+                        <button className="bg-[#665672] hover:bg-[#917595] text- font-bold py-2 px-4 rounded-xl w-1/2" onClick={logout}>
                             Log Out
                         </button>
                     </div>
-                    <div className="border border-gray-500 w-full rounded-xl p-2 flex flex-col gap-2 overflow-hidden">
-                        <h1 className="text-2xl font-bold">About Me</h1>
-                        <hr className="border border-t-0 border-gray-400" />
-                        <div className="text-lg whitespace-pre-line overflow-auto ">
+                    <div className="border border-gray-500 w-full rounded-xl flex flex-col gap-2 overflow-hidden bg-[#403950]">
+                        <h1 className="text-2xl font-bold font-serif px-2 pt-2">About Me</h1>
+                        <hr className="border border-t-0 h-0 border-gray-400" />
+                        <div className="text-lg text-textBody whitespace-pre-line overflow-auto font-poppins px-3 p-2">
                             {currUser.bio ? currUser.bio : "Update Bio..."}
                         </div>
                     </div>

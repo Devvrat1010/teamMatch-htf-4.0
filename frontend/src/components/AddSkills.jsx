@@ -52,6 +52,7 @@ const AddSkills = (props) => {
             setSkill("");
         }
         setFindingSkills(false);
+        window.location.reload();
     };
 
 
@@ -83,7 +84,7 @@ const AddSkills = (props) => {
     }
 
     const removeSkill = (e) => {
-        // preventDefault();
+        e.preventDefault();
         console.log(e.target.parentNode.innerText, "e.target.parentNode.innerText")
         const skill = e.target.parentNode.innerText;
         const category = e.target.parentNode.parentNode.firstChild.innerText;
@@ -132,36 +133,47 @@ const AddSkills = (props) => {
     }
 
     return (
-        <div className="border border-gray-500 rounded-xl p-2 flex flex-col gap-2">
+        <div className="border border-gray-500 rounded-xl p-4 flex flex-col gap-2 bg-[#665672]">
             <div className="flex justify-between items-center">
-                <h1 className="text-2xl font-bold">
+                <h1 className="text-2xl font-bold font-serif">
                     Skillset
                 </h1 >
                 <div className="h-10 ">
-                    <form className="flex gap-5 items-center p-2 rounded-lg border">
+                    <form className="flex gap-5 items-center bg-[#917595] p-2 rounded-lg border border-black ">
                         <input
                             type="text"
                             id="skill"
+                            color="white"
                             placeholder="Add new skill"
-                            className="focus:outline-none"
+                            className="focus:outline-none bg-[#917595] text-white placeholder:text-gray-200"
                             value={skill}
                             onChange={filterSkills}
                             onKeyDown={handleKeyDown}
                         />
-                        <CiSearch />
+                        <CiSearch className="text-black" />
                     </form>
                     {
                         findingSkills &&
-                        <div className="mt-1 flex border flex-col relative border-black bg-white p-2 rounded-lg h-40 overflow-y-scroll z-10">
-                            {filteredSkills.length > 0 && filteredSkills.map((skill, index) => (
-                                <div
-                                    key={index}
-                                    onClick={(e) => addSkill(e.target.innerText)}
-                                    className="p-2 border-b border-gray-400 w-full cursor-pointer hover:bg-slate-400"
-                                >
-                                    {skill}
+                        <div className="mt-1 flex border flex-col relative border-black shadow-2xl shadow-[#917595] bg-[#665672] text-[#ffd19f] rounded-lg overflow-y-scroll z-10">
+
+                            {filteredSkills.length > 0 &&
+                                <div className="h-40">
+                                    {filteredSkills.map((skill, index) => (
+                                        <div
+                                            key={index}
+                                            onClick={(e) => addSkill(e.target.innerText)}
+                                            className="p-2 border-b border-gray-400 w-full cursor-pointer hover:bg-[#1e1e2f]"
+                                        >
+                                            {skill}
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
+                            }
+                            {filteredSkills.length === 0 &&
+                                <div className="p-2 w-full">
+                                    No skills found
+                                </div>
+                            }
                         </div>
                     }
                 </div>
@@ -173,16 +185,15 @@ const AddSkills = (props) => {
                         Object.entries(props.user.skills).map(([category, skills]) => (
                             <div key={category} className="flex flex-col gap-1">
                                 {/* <div> */}
-                                <h3 className="font-bold">{category}</h3>
+                                <h3 className="font-medium text-[#ffce97]">{category}</h3>
                                 <div className="flex flex-wrap gap-2">
                                     {skills && skills.map((skill, index) => (
                                         <div
                                             key={index}
-                                            onClick={() => removeSkill(skill, category)}
-                                            className="flex items-center gap-1 pl-2 p-1 border-2 border-black rounded-md w-fit cursor-pointer"
+                                            className="flex items-center gap-1 pl-2 p-1 border border-black font-light text-[#ffce97] rounded-md w-fit cursor-pointer"
                                         >
                                             {skill}
-                                            <IoMdClose className="hover:bg-gray-400 rounded-full p-1" size={25} onClick={removeSkill} />
+                                            <IoMdClose className="hover:bg-[#bf95b7] rounded-full p-1" size={25} onClick={removeSkill} />
                                         </div>
                                     ))}
                                 </div>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo_svg_white.svg";
 import { useEffect, useState } from "react";
 import { backendLink } from "../utils";
 
@@ -62,21 +62,26 @@ const Navbar = () => {
         }
     }, []);
 
+    const [showProfileDropDown, setShowProfileDropDown] = useState(false);
+
+    const toggleShowProfileDropDown = () => {
+        setShowProfileDropDown(!showProfileDropDown);
+    }
+
     return (
-        <div className="bg-green-100 font-bricolage fixed w-full">
+        <div className="bg-[#1e1e2f] font-bricolage fixed w-full text-[#fdb461]">
             <div className="flex justify-between p-3 ">
-                <div style={logoStyle}>
-                    <style>{keyframes}</style>
-                    <img src={logo} alt="Logo" />
+                <div className="flex items-center">
+                    <div style={logoStyle}>
+                        <style>{keyframes}</style>
+                        <img src={logo} alt="Logo" />
+                    </div>
+                    <p className="text-lg absolute left-14">Match Maker Or What</p>
                 </div>
-                <div className="flex ">
+                <div className="flex">
                     <a href="/" className="ml-10 text-lg hover:text-gray-400">
                         Home
                     </a>
-                    <a href="#vision" className="ml-10 text-lg hover:text-gray-400">
-                        Vision
-                    </a>
-
                     <a href="/peoples" className="ml-10 text-lg hover:text-gray-400">
                         Peoples
                     </a>
@@ -89,9 +94,27 @@ const Navbar = () => {
                 </div>
                 <div className="flex">
                     {currUser.username && (
-                        <Link to="/profilePage" className="ml-10 text-lg hover:text-gray-400">
-                            {currUser.username}
-                        </Link>
+                        <div>
+                            <button className="text-lg" onClick={toggleShowProfileDropDown}>
+                                {currUser.username}
+                            </button>
+                            {
+                                showProfileDropDown && (
+                                    <div className="absolute right-3 flex flex-col bg-green-100 border font-light border-black rounded-md p-2">
+                                        <Link to="/profilePage" className="text-lg hover:text-gray-400">
+                                            Profile
+                                        </Link>
+
+                                        <Link to="/logout" className="text-lg hover:text-gray-400">
+                                            Log Out
+                                        </Link>
+                                    </div>
+                                )
+                            }
+                        </div>
+                        // <Link to="/profilePage" className="ml-10 text-lg hover:text-gray-400">
+                        //     {currUser.username}
+                        // </Link>
                     )}
 
                     {!currUser.username && (
