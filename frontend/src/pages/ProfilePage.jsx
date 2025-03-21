@@ -136,7 +136,7 @@ export default function ProfilePage() {
                     <div className="border border-gray-500 w-full rounded-xl flex flex-col gap-2 overflow-hidden bg-[#403950]">
                         <h1 className="text-2xl font-bold font-serif px-2 pt-2">About Me</h1>
                         <hr className="border border-t-0 h-0 border-gray-400" />
-                        <div className="text-lg text-textBody whitespace-pre-line overflow-auto font-poppins px-3 p-2">
+                        <div className="text-lg text-white whitespace-pre-line overflow-auto font-poppins px-3 p-2">
                             {currUser.bio ? currUser.bio : "Update Bio..."}
                         </div>
                     </div>

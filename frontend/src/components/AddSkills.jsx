@@ -133,7 +133,7 @@ const AddSkills = (props) => {
     }
 
     return (
-        <div className="border border-gray-500 rounded-xl p-4 flex flex-col gap-2 bg-[#665672]">
+        <div className="border border-gray-500 rounded-xl p-4 flex flex-col gap-2 bg-secondary">
             <div className="flex justify-between items-center">
                 <h1 className="text-2xl font-bold font-serif">
                     Skillset
@@ -190,7 +190,7 @@ const AddSkills = (props) => {
                                     {skills && skills.map((skill, index) => (
                                         <div
                                             key={index}
-                                            className="flex items-center gap-1 pl-2 p-1 border border-black font-light text-[#ffce97] rounded-md w-fit cursor-pointer"
+                                            className="flex items-center gap-1 pl-2 p-1 border border-black font-light text-white rounded-md w-fit cursor-pointer"
                                         >
                                             {skill}
                                             <IoMdClose className="hover:bg-[#bf95b7] rounded-full p-1" size={25} onClick={removeSkill} />

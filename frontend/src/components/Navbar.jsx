@@ -95,17 +95,20 @@ const Navbar = () => {
                 <div className="flex">
                     {currUser.username && (
                         <div>
-                            <button className="text-lg" onClick={toggleShowProfileDropDown}>
-                                {currUser.username}
-                            </button>
+                            <div className="flex items-center gap-2 " onClick={toggleShowProfileDropDown}>
+                                <img src={currUser.image} className="h-8 w-8 rounded-full hover:border border-white cursor-pointer" alt="" />
+                                <button className="text-lg" onClick={toggleShowProfileDropDown}>
+                                    {currUser.username}
+                                </button>
+                            </div>
                             {
                                 showProfileDropDown && (
-                                    <div className="absolute right-3 flex flex-col bg-green-100 border font-light border-black rounded-md p-2">
-                                        <Link to="/profilePage" className="text-lg hover:text-gray-400">
+                                    <div className="absolute right-3 flex flex-col border font-light bg-secondary  border-black rounded-md">
+                                        <Link to="/profilePage" className="text-lg hover:text-textBody hover:bg-tertiary px-2 py-1 rounded">
                                             Profile
                                         </Link>
 
-                                        <Link to="/logout" className="text-lg hover:text-gray-400">
+                                        <Link to="/logout" className="text-lg hover:text-textBody hover:bg-tertiary px-2 py-1 rounded">
                                             Log Out
                                         </Link>
                                     </div>
