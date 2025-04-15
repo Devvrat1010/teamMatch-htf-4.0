@@ -6,30 +6,16 @@ import AddSkills from "../components/AddSkills";
 import EditProfile from "../components/editProfile";
 import { useNavigate } from "react-router-dom";
 import { backendLink } from "../utils";
+import CreateNewHackathon from "../components/createNewHackathon";
 
 export default function ProfilePage() {
     const [showForm, setShowForm] = useState(false);
 
     const [reader, setReader] = useState();
 
-    const [hackathon, setHackathon] = useState({
-        name: "",
-        website: "",
-        venue: "",
-        teamSize: "",
-    });
-
     const [currUser, setCurrUser] = useState({});
 
     const navigate = useNavigate();
-
-    const handleInputChange = (event) => {
-        setHackathon({ ...hackathon, [event.target.name]: event.target.value });
-    };
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(hackathon); // You can replace this with your own logic to handle the form submission
-    };
 
     useEffect(() => {
         // Fetch the user's details
@@ -70,30 +56,6 @@ export default function ProfilePage() {
             "LOGIN_INFO=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         navigate("/login");
     };
-
-    //   return (
-    const createHackathon = () => {
-        fetch(backendLink + "/hackathonsCRUD/createHackathon", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                username: currUser.username,
-                name: hackathon.name,
-                link: hackathon.website,
-            }),
-        })
-            .then((res) => {
-                return res.json();
-            })
-            .then((data) => {
-                console.log(data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }
 
     return (
         <div className="h-screen flex flex-col bg-screenBG text-[#fdb461]">
@@ -147,38 +109,17 @@ export default function ProfilePage() {
                     <AddSkills user={currUser} />
                     <div className="mt-4">
                         <button
-                            className="bg-green-900 hover:bg-green-700 text-white rounded-xl p-2 px-3"
+                            className="bg-tertiary hover:bg-quaternary font-semibold text-textBody text- rounded-xl py-3 px-5"
                             onClick={() => setShowForm(!showForm)}
                         >
                             New Hackathon
                         </button>
-                        {showForm && (
-                            <form onSubmit={handleSubmit}>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    placeholder="Name"
-                                    value={hackathon.name}
-                                    onChange={handleInputChange}
-                                    className="border-2 border-black rounded-xl p-2 w-full mb-2 mt-7"
-                                />
-                                <input
-                                    type="text"
-                                    name="website"
-                                    placeholder="Website"
-                                    value={hackathon.website}
-                                    onChange={handleInputChange}
-                                    className="border-2 border-black rounded-xl p-2 w-full mb-2"
-                                />
-                                <button
-                                    type="submit"
-                                    className="bg-blue-500 hover:bg-blue-700 text-white rounded-xl p-2 px-3 mt-2"
-                                    onClick={createHackathon}
-                                >
-                                    Submit Hackathon
-                                </button>
-                            </form>
-                        )}
+
+                        <CreateNewHackathon
+                            showForm={showForm}
+                            setShowForm={setShowForm}
+                            currUser={currUser}
+                        />
                     </div>
                     <EditProfile
                         currUser={currUser}

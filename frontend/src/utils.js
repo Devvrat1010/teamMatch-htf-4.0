@@ -1,7 +1,7 @@
 // export const backendLink = "backendLink"
 // export const backendLink = "https://teammatch-backend.onrender.com"
 // export const backendLink = "http://localhost:5000"
-export const backendLink = "http://192.168.0.34:5000"
+export const backendLink = "http://192.168.0.2:5000"
 
 // export const softwareEngineeringSkills = {
 //     'Programming Languages': ['ABAP', 'APL', 'ActionScript', 'Ada', 'Apex', 'Assembly', 'Ballerina', 'Bash', 'C', 'C#', 'C++', 'COBOL', 'COBOL', 'Carbon', 'Ceylon', 'Clojure', 'Crystal', 'D', 'Dart', 'Delphi', 'Eiffel', 'Elixir', 'Elm', 'Erlang', 'F#', 'Forth', 'Fortran', 'Go', 'GraphQL', 'Groovy', 'Hack', 'Haskell', 'J', 'Java', 'JavaScript', 'Julia', 'Kotlin', 'Lisp', 'Lua', 'MATLAB', 'Nim', 'OCaml', 'Objective-C', 'Octave', 'PHP', 'PL/SQL', 'Pascal', 'Perl', 'Pony', 'PowerShell', 'Prolog', 'PureScript', 'Python', 'Q#', 'R', 'RPG', 'Racket', 'ReScript', 'Reason', 'Ruby', 'Rust', 'SAS', 'SQL', 'Scala', 'Scheme', 'Smalltalk', 'Solidity', 'Standard ML', 'Swift', 'T-SQL', 'Tcl', 'TypeScript', 'V', 'VBA', 'VHDL', 'Verilog', 'Visual Basic', 'Zig'],

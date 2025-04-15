@@ -113,7 +113,6 @@ const AddSkills = (props) => {
                 console.log(err);
             });
 
-        // const newSkills = props.user.skills[category].filter((item) => item !== skill);
     };
 
     const filterSkills = (e) => {
@@ -190,7 +189,7 @@ const AddSkills = (props) => {
                                     {skills && skills.map((skill, index) => (
                                         <div
                                             key={index}
-                                            className="flex items-center gap-1 pl-2 p-1 border border-black font-light text-white rounded-md w-fit cursor-pointer"
+                                            className="flex items-center gap-1 pl-2 p-1 border border-textHeading font-light text-white rounded-md w-fit cursor-pointer"
                                         >
                                             {skill}
                                             <IoMdClose className="hover:bg-[#bf95b7] rounded-full p-1" size={25} onClick={removeSkill} />

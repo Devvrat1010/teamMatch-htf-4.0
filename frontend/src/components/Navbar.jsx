@@ -79,16 +79,16 @@ const Navbar = () => {
                     <p className="text-lg absolute left-14">Match Maker Or What</p>
                 </div>
                 <div className="flex">
-                    <a href="/" className="ml-10 text-lg hover:text-gray-400">
+                    <a href="/" className="ml-10 text-lg hover:text-textBody">
                         Home
                     </a>
-                    <a href="/peoples" className="ml-10 text-lg hover:text-gray-400">
+                    <a href="/peoples" className="ml-10 text-lg hover:text-textBody">
                         Peoples
                     </a>
-                    <a href="/chats" className="ml-10 text-lg hover:text-gray-400">
+                    <a href="/chats" className="ml-10 text-lg hover:text-textBody">
                         Chat Room
                     </a>
-                    <a href="https://github.com/Devvrat1010/teamMatch-htf-4.0" className="ml-10 text-lg hover:text-gray-400">
+                    <a href="https://github.com/Devvrat1010/teamMatch-htf-4.0" className="ml-10 text-lg hover:text-textBody">
                         Github
                     </a>
                 </div>
@@ -96,8 +96,8 @@ const Navbar = () => {
                     {currUser.username && (
                         <div>
                             <div className="flex items-center gap-2 " onClick={toggleShowProfileDropDown}>
-                                <img src={currUser.image} className="h-8 w-8 rounded-full hover:border border-white cursor-pointer" alt="" />
-                                <button className="text-lg" onClick={toggleShowProfileDropDown}>
+                                <img src={currUser.image} className="h-8 w-8 rounded-full hover:border border-textHeading cursor-pointer" alt="" />
+                                <button className="text-lg hover:text-textBody" onClick={toggleShowProfileDropDown}>
                                     {currUser.username}
                                 </button>
                             </div>

@@ -55,18 +55,19 @@ export default function EditProfile(props) {
 
     return (
         <div
-            className={`absolute right-0 top-0 bg-green-200 h-full w-1/3 p-4 flex flex-col gap-2 transition-all duration-300 ease-in-out ${edit ? "translate-x-0 " : "translate-x-full "
+            className={`absolute right-0 top-0 bg-secondary h-full w-1/3 p-4 flex flex-col gap-3 transition-all duration-300 ease-in-out border-l border-textHeading ${edit ? "translate-x-0 " : "translate-x-full "
                 }`}
         >
             {/* Close Button */}
-            <div className="w-full flex justify-end" onClick={() => setEdit(!edit)}>
-                <MdOutlineKeyboardDoubleArrowRight className="hover:bg-green-400 p-1 rounded-full cursor-pointer" size={30} />
+            <div className="w-full flex justify-between items-center" onClick={() => setEdit(!edit)}>
+                <p className="text-xl font-serif font-semibold">Edit Profile</p>
+                <MdOutlineKeyboardDoubleArrowRight className="hover:bg-tertiary rounded-full cursor-pointer" size={35} />
             </div>
+            <hr />
 
-            {/* Input Fields */}
             <input
                 type="text"
-                className="border border-black p-2 rounded-xl"
+                className="border-2 border-textHeading p-2 rounded-xl"
                 placeholder={currUser.fullName}
                 onChange={(e) => {
                     setUpdatedDetails({ ...updatedDetails, fullName: e.target.value });
@@ -78,7 +79,7 @@ export default function EditProfile(props) {
                 id="about"
                 cols="30"
                 rows="10"
-                className="border border-black p-2 rounded-xl w-full"
+                className="border-2 border-textHeading p-2 rounded-xl w-full"
                 placeholder="About me..."
                 value={updatedDetails.description || ""}
                 onChange={(e) => {
@@ -87,12 +88,12 @@ export default function EditProfile(props) {
             ></textarea>
 
             {/* Profile Picture Upload & Save Button */}
-            <div className="flex gap-2">
+            <div className="flex gap-2 text-textBody">
                 <button className="rounded-md w-fit">
                     <div className="relative inline-block">
                         <label
                             htmlFor="file-upload"
-                            className="flex items-center w-full gap-2 px-4 py-2 bg-green-600 text-white font-semibold rounded-lg cursor-pointer transition hover:bg-green-700 active:bg-green-800 border-2 border-transparent"
+                            className="flex items-center w-full gap-2 px-4 py-2 bg-tertiary font-semibold rounded-lg cursor-pointer transition border-2 border-transparent"
                         >
                             📷 Update Profile Picture
                         </label>
@@ -108,7 +109,7 @@ export default function EditProfile(props) {
 
                 <button
                     type="submit"
-                    className="text-white bg-green-600 flex-grow hover:bg-green-500 font-bold py-2 px-4 rounded-lg"
+                    className=" bg-tertiary flex-grow hover:bg-quaternary font-bold py-2 px-4 rounded-lg"
                     onClick={saveDetails}
                 >
                     Save
