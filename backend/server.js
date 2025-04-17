@@ -24,10 +24,10 @@ const userCRUD = require("./routes/userCRUD");
 const hackathonsCRUD = require("./routes/hackathonsCRUD");
 const chatCRUD = require("./routes/chatCRUD");
 
-app.use("/backend/auth", auth);
-app.use("/backend/userCRUD", userCRUD);
-app.use("/backend/hackathonsCRUD", hackathonsCRUD);
-app.use("/backend/chatCRUD", chatCRUD);
+app.use("/auth", auth);
+app.use("/userCRUD", userCRUD);
+app.use("/hackathonsCRUD", hackathonsCRUD);
+app.use("/chatCRUD", chatCRUD);
 
 // Websocket start
 const io = new Server(server, {
